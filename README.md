@@ -1,4 +1,7 @@
 # react-anchor
+[![NPM version][npm-image]][npm-url]
+[![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
 
 Functional factory to create anchor components that do custom actions. Uses
 `event.preventDefault` under the hood.
@@ -47,13 +50,21 @@ var anchorFactory = AnchorFactory(router.navigate, 'menu-link');
 ```
 
 #### AnchorFactory()(url, inner)
-Call the newly created anchorFactory and create a new anchor tag. Takes an
-opts object with a `url` and `className` property. Also takes an `inner`
+Call the newly created anchorFactory and create a new anchor tag. Either takes an url or
+an opts object with a `url` and `className` property. Also takes an `inner`
 argument which sets the children of the anchor tag.
 ```js
 var anchorTag = anchorFactory('/hello', 'hello');
+var otherTag = anchorFactory({url: '/hello', className: 'sup'}, 'hello');
 ```
 
 ## License
 [MIT](https://tldrlegal.com/license/mit-license) ©
 [Yoshua Wuyts](yoshuawuyts.com)
+
+[npm-image]: https://img.shields.io/npm/v/react-anchor.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/react-anchor
+[travis-image]: https://img.shields.io/travis/yoshuawuyts/react-anchor.svg?style=flat-square
+[travis-url]: https://travis-ci.org/yoshuawuyts/react-anchor
+[coveralls-image]: https://img.shields.io/coveralls/yoshuawuyts/react-anchor.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/yoshuawuyts/react-anchor?branch=master
