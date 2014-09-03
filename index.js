@@ -3,7 +3,7 @@
  */
 
 var react = require('react');
-var dom = react.dom;
+var dom = react.DOM;
 
 /**
  * Create a react anchor factory.
@@ -13,8 +13,8 @@ module.exports = function(open, className) {
 
   return function(url, inner) {
     var attrs = {
-      href: url,
-      className: className,
+      href: url || '',
+      className: className || '',
       onClick: handleClick.bind(this, url)
     };
 
@@ -24,5 +24,5 @@ module.exports = function(open, className) {
     }
 
     return dom.a(attrs, inner);
-  }
-}
+  };
+};
