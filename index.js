@@ -7,14 +7,31 @@ var dom = react.DOM;
 
 /**
  * Create a react anchor factory.
+ *
+ * @param {Function} open
+ * @param {String} className
+ * @api public
  */
 
 module.exports = function(open, className) {
 
-  return function(url, inner) {
+  open = open || function() {};
+  className = className || '';
+
+  return function(opts, inner) {
+
+    var url = '';
+    
+    if ('object' == typeof opts) {
+      url = opts.url || url;
+      if (opts.className) className += (' ' + opts.className);
+    } else {
+      url = opts;
+    }
+
     var attrs = {
-      href: url || '',
-      className: className || '',
+      href: url,
+      className: className,
       onClick: handleClick.bind(this, url)
     };
 
