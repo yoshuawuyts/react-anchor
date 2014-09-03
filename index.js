@@ -9,12 +9,12 @@ var dom = react.dom;
  * Create a react anchor factory.
  */
 
-module.exports = function(open) {
+module.exports = function(open, class) {
 
-  return function(opts, inner) {
+  return function(url, inner) {
     var attrs = {
-      href: opts.href,
-      className: opts.className,
+      href: url,
+      className: class,
       onClick: handleClick.bind(this, url)
     };
 

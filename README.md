@@ -14,35 +14,44 @@ var AnchorFactory = require('react-anchor');
 var open = require('open');
 
 // Create a new factory.
-var anchorFactory = AnchorFactory(open);
+var anchorFactory = AnchorFactory(open, 'profile-link');
 
 // Create a new anchor tag.
+anchorFactory('/yoshuawuyts', 'gh/yoshuawuyts');
+```
+
+returns the following component:
+```js
 var opts = {
-  url: '/yoshuawuyts',
-  className: 'profile-link'
+  className: 'profile-link',
+  href: 'gh/yoshuawuyts',
+  onClick: handleClick.bind(this)
 };
-anchorFactory(opts, 'gh/yoshuawuyts');
-// => {ReactComponent}
+
+function handleClick(e) {
+  e.preventDefault();
+  open('gh/yoshuawuyts');
+}
+
+react.DOM.a(opts, 'gh/yoshuawuyts');
 ```
 
 ## API
 #### AnchorFactory(openFunction)
-Create a new anchorFactory, which returns anchor components.
+Create a new anchorFactory, which returns an anchor components.
 ```js
 var AnchorFactory = require('react-anchor');
-var myCustomOpenFunc = function() {
-  // do stuff
-};
+var router = require('./myRouter');
 
-var anchorFactory = AnchorFactory(myCustomOpenFunc);
+var anchorFactory = AnchorFactory(router.navigate, 'menu-link');
 ```
 
-#### AnchorFactory()(opts, inner)
+#### AnchorFactory()(url, inner)
 Call the newly created anchorFactory and create a new anchor tag. Takes an
 opts object with a `url` and `className` property. Also takes an `inner`
 argument which sets the children of the anchor tag.
 ```js
-var anchorTag = anchorFactory({url: '/hello', className: 'link'}, 'hello');
+var anchorTag = anchorFactory('/hello', 'hello');
 ```
 
 ## License
