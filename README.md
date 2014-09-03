@@ -53,6 +53,9 @@ var anchorFactory = AnchorFactory(router.navigate, 'menu-link');
 Call the newly created anchorFactory and create a new anchor tag. Either takes an url or
 an opts object with a `url` and `className` property. Also takes an `inner`
 argument which sets the children of the anchor tag.
+
+If you're using an object as argument, note that `className` will extend the class set in the AnchorFactory.
+So if the anchorFactory provides `.link` and you create a tag with class `.modal-link` you get `.link .modal-link`.
 ```js
 var anchorTag = anchorFactory('/hello', 'hello');
 var otherTag = anchorFactory({url: '/hello', className: 'sup'}, 'hello');
