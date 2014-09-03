@@ -1,6 +1,6 @@
 {
   "name": "react-anchor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Functional factory to create anchor components",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,11 @@
     "type": "git",
     "url": "https://github.com/yoshuawuyts/react-anchor"
   },
-  "keywords": ["react-component", "anchor", "react"],
+  "keywords": [
+    "react-component",
+    "anchor",
+    "react"
+  ],
   "author": "Yoshua Wuyts <i@yoshuawuyts.com>",
   "license": "MIT",
   "devDependencies": {
