@@ -3,7 +3,7 @@
 [![build status][travis-image]][travis-url]
 [![Test coverage][coveralls-image]][coveralls-url]
 
-Functional factory to create anchor components that do custom actions. Uses
+Functional factory to create anchor components that trigger custom actions. Uses
 `event.preventDefault` under the hood.
 
 ## Installation

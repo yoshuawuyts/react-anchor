@@ -1,7 +1,7 @@
 {
   "name": "react-anchor",
   "version": "1.2.0",
-  "description": "",
+  "description": "Functional factory to create anchor components",
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --recursive --harmony-generators -R spec",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "https://github.com/yoshuawuyts/react-anchor"
   },
-  "keywords": [],
+  "keywords": ["react-component", "anchor", "react"],
   "author": "Yoshua Wuyts <i@yoshuawuyts.com>",
   "license": "MIT",
   "devDependencies": {
