@@ -18,11 +18,11 @@ module.exports = function(open, class) {
       onClick: handleClick.bind(this, url)
     };
 
-    return dom.a(attrs, inner);
-  }
+    function handleClick(url, e) {
+      e.preventDefault();
+      open(url);
+    }
 
-  function handleClick(url, e) {
-    e.preventDefault();
-    open(url);
+    return dom.a(attrs, inner);
   }
 }
