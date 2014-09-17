@@ -2,6 +2,7 @@
  * Module dependencies
  */
 
+var assert = require('assert');
 var react = require('react');
 var dom = react.DOM;
 
@@ -13,33 +14,43 @@ var dom = react.DOM;
  * @api public
  */
 
-module.exports = function(open, className) {
-
-  open = open || function() {};
+module.exports = function(openFn, className) {
+  assert('function' == typeof openFn, 'OpenFn should be a function');
   className = className || '';
 
+  /**
+   * Create a factory function
+   *
+   * @param {Object} opts
+   * @param {inner}
+   * @api private
+   */
+
   return function(opts, inner) {
+    assert('object' == typeof opts, 'Opts should be an object');
+    assert('string' == typeof opts.href, 'Href should be a string');
 
-    var url = '';
-    
-    if ('object' == typeof opts) {
-      url = opts.url || url;
-      if (opts.className) className += (' ' + opts.className);
-    } else {
-      url = opts;
-    }
+    if (opts.className) className = className.concat(' ', opts.className);
 
-    var attrs = {
-      href: url,
-      className: className,
-      onClick: handleClick.bind(this, url)
-    };
-
-    function handleClick(url, e) {
-      e.preventDefault();
-      open(url);
-    }
-
-    return dom.a(attrs, inner);
+    return react.createClass({
+      render: function() {
+        var clickFn = handleClick.bind(this, opts.href);
+        return dom.a({href: opts.href, className: className, onClick: clickFn},
+          inner
+        );
+      }
+    });
   };
+
+  /**
+   * Open a link with the 'open' function
+   *
+   * @param {String} url
+   * @api private
+   */
+
+  function handleClick(url, e) {
+    e.preventDefault();
+    openFn(url);
+  }
 };

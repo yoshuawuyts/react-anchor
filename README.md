@@ -40,7 +40,7 @@ react.DOM.a(opts, 'gh/yoshuawuyts');
 ```
 
 ## API
-#### AnchorFactory(openFunction)
+#### var linkFactory = AnchorFactory(openFunction)
 Create a new anchorFactory, which returns an anchor components.
 ```js
 var AnchorFactory = require('react-anchor');
@@ -49,7 +49,7 @@ var router = require('./myRouter');
 var anchorFactory = AnchorFactory(router.navigate, 'menu-link');
 ```
 
-#### AnchorFactory()(url, inner)
+#### linkFactory(url, inner)
 Call the newly created anchorFactory and create a new anchor tag. Either takes an url or
 an opts object with a `url` and `className` property. Also takes an `inner`
 argument which sets the children of the anchor tag.

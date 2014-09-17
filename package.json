@@ -1,30 +1,32 @@
 {
   "name": "react-anchor",
   "version": "1.2.1",
-  "description": "Functional factory to create anchor components",
+  "description": "Functional react anchor factory",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test ./node_modules/mocha/bin/mocha --recursive --harmony-generators -R spec",
-    "coverage": "node ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha --report text --recursive -- -R spec && rm -rf ./coverage/"
+    "test": "make test"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yoshuawuyts/react-anchor"
-  },
+  "repository": "yoshuawuyts/react-anchor",
   "keywords": [
     "react-component",
     "anchor",
     "react"
   ],
-  "author": "Yoshua Wuyts <i@yoshuawuyts.com>",
   "license": "MIT",
+  "dependencies": {
+    "react": "^0.11.1"
+  },
   "devDependencies": {
     "coveralls": "^2.10.0",
     "istanbul": "^0.2.11",
+    "jsdom": "^1.0.0-pre.6",
+    "make-lint": "^1.0.1",
     "mocha": "^1.20.1",
     "should": "^4.0.4"
   },
-  "dependencies": {
-    "react": "^0.11.1"
-  }
+  "files": [
+    "LICENSE",
+    "index.js",
+    "HISTORY.md"
+  ]
 }
