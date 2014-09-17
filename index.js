@@ -30,12 +30,13 @@ module.exports = function(openFn, className) {
     assert('object' == typeof opts, 'Opts should be an object');
     assert('string' == typeof opts.href, 'Href should be a string');
 
-    if (opts.className) className = className.concat(' ', opts.className);
+    var _className = className;
+    if (opts.className) _className = className.concat(' ', opts.className);
 
     return react.createClass({
       render: function() {
         var clickFn = handleClick.bind(this, opts.href);
-        return dom.a({href: opts.href, className: className, onClick: clickFn},
+        return dom.a({href: opts.href, className: _className, onClick: clickFn},
           inner
         );
       }

@@ -76,4 +76,17 @@ describe('factory()', function () {
 
     props.className.should.eql('hello howdy');
   });
+
+  it('should be able to generate multiple elements', function() {
+    var hrefFactory = factory({href: '', className: 'howdy'}, 'world');
+    var el = utils.renderIntoDocument(hrefFactory());
+    var props = el._renderedComponent.props;
+
+    props.className.should.eql('hello howdy');
+
+    var el2 = utils.renderIntoDocument(hrefFactory());
+    var props2 = el._renderedComponent.props;
+
+    props2.className.should.eql('hello howdy');
+  });
 });
