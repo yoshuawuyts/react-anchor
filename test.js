@@ -26,13 +26,13 @@ beforeEach(function() {
  * Test
  */
 
-describe('anchorFactory()', function() {
+describe('factory = anchorFactory(opts, inner)', function() {
   it('should return a function', function() {
     anchorFactory(function(){}).should.be.of.type('function');
   });
 });
 
-describe('anchorFactory()()', function () {
+describe('factory()', function () {
   var factory = anchorFactory(function() {}, 'hello');
 
   it('should have default settings', function() {
