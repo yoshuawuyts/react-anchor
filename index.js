@@ -2,7 +2,6 @@
  * Module dependencies
  */
 
-var assert = require('assert');
 var react = require('react');
 var dom = react.DOM;
 
@@ -14,44 +13,34 @@ var dom = react.DOM;
  * @api public
  */
 
-module.exports = function(openFn, className) {
-  assert('function' == typeof openFn, 'OpenFn should be a function');
+module.exports = function(open, className) {
+
+  open = open || function() {};
   className = className || '';
 
-  /**
-   * Create a factory function
-   *
-   * @param {Object} opts
-   * @param {inner}
-   * @api private
-   */
-
   return function(opts, inner) {
-    assert('object' == typeof opts, 'Opts should be an object');
-    assert('string' == typeof opts.href, 'Href should be a string');
 
-    var _className = className;
-    if (opts.className) _className = className.concat(' ', opts.className);
+    var href = '';
+    var scopedClass = className;
 
-    return react.createClass({
-      render: function() {
-        var clickFn = handleClick.bind(this, opts.href);
-        return dom.a({href: opts.href, className: _className, onClick: clickFn},
-          inner
-        );
-      }
-    });
+    if ('object' == typeof opts) {
+      href = opts.href || href;
+      if (opts.className) scopedClass += (' ' + opts.className);
+    } else {
+      href = opts;
+    }
+
+    var attrs = {
+      href: href,
+      className: scopedClass,
+      onClick: handleClick.bind(this, href)
+    };
+
+    function handleClick(href, e) {
+      e.preventDefault();
+      open(href);
+    }
+
+    return dom.a(attrs, inner);
   };
-
-  /**
-   * Open a link with the 'open' function
-   *
-   * @param {String} url
-   * @api private
-   */
-
-  function handleClick(url, e) {
-    e.preventDefault();
-    openFn(url);
-  }
 };
