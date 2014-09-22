@@ -58,7 +58,7 @@ If you're using an object as argument, note that `className` will extend the cla
 So if the anchorFactory provides `.link` and you create a tag with class `.modal-link` you get `.link .modal-link`.
 ```js
 var anchorTag = anchorFactory('/hello', 'hello');
-var otherTag = anchorFactory({url: '/hello', className: 'sup'}, 'hello');
+var otherTag = anchorFactory({href: '/hello', className: 'sup'}, 'hello');
 ```
 
 ## License
