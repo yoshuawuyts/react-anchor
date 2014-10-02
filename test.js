@@ -15,22 +15,25 @@ var dom = react.DOM;
 
 describe('factory = anchorFactory()', function() {
   it('should return a function', function() {
-    anchorFactory().should.be.of.type('function');
+    anchorFactory({}).should.be.of.type('function');
   });
 });
 
 describe('factory()', function () {
-  var factory = anchorFactory(function() {done()}, 'hello');
+  var factory = anchorFactory({
+    onClick: function() {done()},
+    className: 'hello'
+  });
 
   it('should have default settings', function() {
-    var props = factory()._store.props;
+    var props = factory({})._store.props;
 
     props.className.should.eql('hello');
     props.onClick.should.be.of.type('function');
   });
 
   it('should use a string as the first arg', function() {
-    var props = factory('/hello')._store.props;
+    var props = factory({href: '/hello'})._store.props;
     props.href.should.eql('/hello');
   });
 
@@ -41,20 +44,20 @@ describe('factory()', function () {
   });
 
   it('should set the inner body', function() {
-    var props = factory('', 'world')._store.props;
+    var props = factory({children: 'world'})._store.props;
     props.children.should.eql('world');
   });
 
   it('should extend default settings', function() {
-    var props = factory({className: 'howdy'}, 'world')._store.props;
+    var props = factory({className: 'howdy'})._store.props;
     props.className.should.eql('hello howdy');
   });
 
   it('should not cause conflicts on multiple yields', function() {
-    var props = factory({className: 'howdy'}, 'world')._store.props;
+    var props = factory({className: 'howdy'})._store.props;
     props.className.should.eql('hello howdy');
 
-    var props = factory({className: 'howdy'}, 'world')._store.props;
+    var props = factory({className: 'howdy'})._store.props;
     props.className.should.eql('hello howdy');
   });
 });

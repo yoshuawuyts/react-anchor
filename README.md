@@ -12,32 +12,40 @@ $ npm i --save react-anchor
 ```
 ## Overview
 ```js
-// Require dependencies.
-var AnchorFactory = require('react-anchor');
+var anchorFactory = require('react-anchor');
 var open = require('open');
 
-// Create a new factory.
-var anchorFactory = AnchorFactory(open, 'profile-link');
+// create factory that generates links
 
-// Create a new anchor tag.
-anchorFactory('/yoshuawuyts', 'gh/yoshuawuyts');
+var profileLinkFactory = anchorFactory({
+  onClick: open,
+  className: 'profile-link'
+});
+
+// create a new `<a>` tag
+
+profileLinkFactory({
+  href: 'gh/yoshuawuyts',
+  children: '/yoshuawuyts',
+  className: 'foo-bar'
+});
 ```
 
-returns the following component:
+creates the following component:
 ```js
 var opts = {
-  className: 'profile-link',
+  className: 'profile-link foo-bar',
   href: 'gh/yoshuawuyts',
   onClick: handleClick.bind(this)
 };
+
+return react.DOM.a(opts, 'gh/yoshuawuyts');
 
 function handleClick(e) {
   e.preventDefault();
   e.stopPropagation();
   open('gh/yoshuawuyts');
 }
-
-react.DOM.a(opts, 'gh/yoshuawuyts');
 ```
 
 ## API

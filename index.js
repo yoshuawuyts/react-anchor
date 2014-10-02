@@ -2,38 +2,37 @@
  * Module dependencies
  */
 
+var assert = require('assert');
 var react = require('react');
 var dom = react.DOM;
 
 /**
  * Create a react anchor factory.
  *
- * @param {Function} open
- * @param {String} className
+ * @param {Object} opts
+ * @return {Function}
  * @api public
  */
 
-module.exports = function(open, className) {
+module.exports = function(opts) {
+  assert.equal(typeof opts, 'object', 'react-anchor: opts should be an object');
+  var open = opts.open || function() {};
+  var className = opts.className || '';
 
-  open = open || function() {};
-  className = className || '';
+  return function(innerOpts) {
+    assert.equal(typeof innerOpts, 'object', 'react-anchor: opts should be an object');
 
-  return function(opts, inner) {
-
-    var href = '';
+    var href = innerOpts.href || '';
+    var children = innerOpts.children || '';
     var scopedClass = className;
 
-    if ('object' == typeof opts) {
-      href = opts.href || href;
-      if (opts.className) scopedClass += (' ' + opts.className);
-    } else {
-      href = opts;
-    }
+    if (innerOpts.className) scopedClass += (' ' + innerOpts.className);
 
     var attrs = {
       href: href,
       className: scopedClass,
-      onClick: handleClick.bind(this, href)
+      onClick: handleClick.bind(this, href),
+      children: children
     };
 
     function handleClick(href, e) {
@@ -42,6 +41,6 @@ module.exports = function(open, className) {
       open(href);
     }
 
-    return dom.a(attrs, inner);
+    return dom.a(attrs);
   };
 };
