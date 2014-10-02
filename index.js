@@ -37,7 +37,7 @@ module.exports = function(open, className) {
     };
 
     function handleClick(href, e) {
-      e.stopPropogation();
+      e.stopPropagation();
       e.preventDefault();
       open(href);
     }

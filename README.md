@@ -33,7 +33,7 @@ var opts = {
 
 function handleClick(e) {
   e.preventDefault();
-  e.stopPropogation();
+  e.stopPropagation();
   open('gh/yoshuawuyts');
 }
 
