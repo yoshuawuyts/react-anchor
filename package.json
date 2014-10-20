@@ -1,6 +1,6 @@
 {
   "name": "react-anchor",
-  "version": "4.0.1",
+  "version": "5.0.0",
   "description": "Functional react anchor factory",
   "main": "index.js",
   "scripts": {
