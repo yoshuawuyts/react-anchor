@@ -41,6 +41,6 @@ module.exports = function(opts) {
       open(href);
     }
 
-    return dom.a(attrs);
+    return dom.div(attrs);
   };
 };
